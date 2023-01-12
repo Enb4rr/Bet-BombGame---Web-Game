@@ -1,12 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    public delegate void BombEvents();
+    public event BombEvents OnRebuildBomb;
+
     public float multiplier = 1f;
-    private bool BombIsOn;
+    public bool BombIsOn;
     private int randomNumber;
+
+    public TMP_Text multiplierText;
+
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
+    private void OnEnable()
+    {
+        gameManager.OnStartPlaying += TurnOnBomb;
+    }
+
+    private void OnDisable()
+    {
+        gameManager.OnStartPlaying -= TurnOnBomb;
+    }
 
     private void Update()
     {
@@ -24,14 +47,14 @@ public class Bomb : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        //Actualizar sprites
+        multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
     }
 
     private IEnumerator GenerateRandomNumber()
     {
         randomNumber = Random.Range(0, 5);
 
-        if (randomNumber == 1)
+        if (randomNumber == 0)
         {
             ExplodeBomb();
         }
@@ -39,17 +62,33 @@ public class Bomb : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    private void ExplodeBomb()
+    private IEnumerator ExplodeBomb()
     {
-        multiplier = 0;
+        multiplier = 0f;
         BombIsOn = false;
 
+        multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
+
         //Mostrar sprites
+
+        yield return new WaitForSeconds(3f);
+
+        ResetBomb();
     }
 
     private void ResetBomb()
     {
         multiplier = 1f;
+
+        multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
+
         //Recargar sprites
+
+        OnRebuildBomb?.Invoke();
+    }
+
+    private void TurnOnBomb(float a, float b)
+    {
+        BombIsOn = true;
     }
 }
