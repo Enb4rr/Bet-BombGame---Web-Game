@@ -23,9 +23,11 @@ public class GameManager : MonoBehaviour
     public TMP_InputField betInputField;
     public Button playButton, retireBetButton;
 
-    private void Start()
+    private void Awake()
     {
         bomb = FindObjectOfType<Bomb>();
+        playButton.onClick.AddListener(StartPlayingButton);
+        retireBetButton.onClick.AddListener(RetireBetButton);
     }
 
     private void OnEnable()

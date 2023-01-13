@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
 
     public float Balance { get => balance; set => balance = value; }
 
-    private void Start()
+    private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+    }
 
+    private void Start()
+    {
         Balance = 10;
         balanceText.text = "Your current balance is: " + balance.ToString() + "$";
     }

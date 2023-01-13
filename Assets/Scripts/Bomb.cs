@@ -16,7 +16,7 @@ public class Bomb : MonoBehaviour
 
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -47,7 +47,7 @@ public class Bomb : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
+        //multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
     }
 
     private IEnumerator GenerateRandomNumber()
