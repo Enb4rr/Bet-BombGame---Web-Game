@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void RetireBetButton()
     {
+        multiplier = bomb.multiplier;
         OnRetireBet?.Invoke(bet, multiplier);
         retireBetButton.gameObject.SetActive(false);
     }
@@ -68,5 +69,6 @@ public class GameManager : MonoBehaviour
     {
         playButton.gameObject.SetActive(true);
         betInputField.gameObject.SetActive(true);
+        retireBetButton.gameObject.SetActive(false);
     }
 }

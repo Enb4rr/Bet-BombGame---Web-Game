@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multiplier: 1
   BombIsOn: 0
-  multiplierText: {fileID: 0}
+  multiplierText: {fileID: 1756583483}
 --- !u!1 &2091208746
 GameObject:
   m_ObjectHideFlags: 0

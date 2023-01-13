@@ -9,7 +9,8 @@ public class Bomb : MonoBehaviour
     public event BombEvents OnRebuildBomb;
 
     public float multiplier = 1f;
-    public bool BombIsOn;
+    public bool bombIsOn;
+    public bool counting;
     private int randomNumber;
 
     public TMP_Text multiplierText;
@@ -33,8 +34,9 @@ public class Bomb : MonoBehaviour
 
     private void Update()
     {
-        if (BombIsOn)
+        if (bombIsOn & counting == false)
         {
+            counting = true;
             StartCoroutine(RaiseMultiplier());
             StartCoroutine(GenerateRandomNumber());
         }
@@ -43,20 +45,23 @@ public class Bomb : MonoBehaviour
     private IEnumerator RaiseMultiplier()
     {
         multiplier += 0.2f;
-        Debug.Log(multiplier);
 
         yield return new WaitForSeconds(1f);
 
-        //multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
+        multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
+
+        counting = false;
     }
 
     private IEnumerator GenerateRandomNumber()
     {
         randomNumber = Random.Range(0, 5);
 
+        Debug.Log(randomNumber);
+
         if (randomNumber == 0)
         {
-            ExplodeBomb();
+            StartCoroutine(ExplodeBomb());
         }
 
         yield return new WaitForSeconds(1f);
@@ -65,7 +70,9 @@ public class Bomb : MonoBehaviour
     private IEnumerator ExplodeBomb()
     {
         multiplier = 0f;
-        BombIsOn = false;
+        bombIsOn = false;
+
+        Debug.Log("Bomb exploded");
 
         multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
 
@@ -89,6 +96,6 @@ public class Bomb : MonoBehaviour
 
     private void TurnOnBomb(float a, float b)
     {
-        BombIsOn = true;
+        bombIsOn = true;
     }
 }
