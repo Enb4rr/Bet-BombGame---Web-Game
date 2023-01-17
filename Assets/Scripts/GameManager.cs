@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     private float bet, multiplier;
     private Bomb bomb;
+    private Player player;
     public GameObject tick;
 
     //Buttons & Stuff
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         bomb = FindObjectOfType<Bomb>();
+        player = FindObjectOfType<Player>();
         playButton.onClick.AddListener(StartPlayingButton);
         retireBetButton.onClick.AddListener(RetireBetButton);
         audioSourceRetireBet = GetComponent<AudioSource>();
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         bet = float.Parse(betInputField.text);
         
-        if(bet > 0)
+        if(bet > 0 && bet <= player.Balance)
         {
             OnStartPlaying?.Invoke(bet, multiplier);
 
