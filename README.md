@@ -1,7 +1,7 @@
 # Bet-BombGame
 
 This project was made with the only purpose of being presented as a technical test.
-All assets used are free from copyright.
+All used assets are free from copyright.
 
 Free assets used:
 
