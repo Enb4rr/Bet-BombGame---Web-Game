@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
 {
     public delegate void BombEvents();
     public event BombEvents OnRebuildBomb;
+    public event BombEvents OnBombExplode;
 
     public float multiplier = 1f;
     public bool bombIsOn;
@@ -17,9 +18,12 @@ public class Bomb : MonoBehaviour
 
     private GameManager gameManager;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -57,8 +61,6 @@ public class Bomb : MonoBehaviour
     {
         randomNumber = Random.Range(0, 5);
 
-        Debug.Log(randomNumber);
-
         if (randomNumber == 0)
         {
             StartCoroutine(ExplodeBomb());
@@ -72,11 +74,13 @@ public class Bomb : MonoBehaviour
         multiplier = 0f;
         bombIsOn = false;
 
-        Debug.Log("Bomb exploded");
-
         multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
 
+        audioSource.Play();
+
         //Mostrar sprites
+
+        OnBombExplode?.Invoke();
 
         yield return new WaitForSeconds(3f);
 

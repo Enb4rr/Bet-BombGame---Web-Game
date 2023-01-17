@@ -23,22 +23,26 @@ public class GameManager : MonoBehaviour
     public TMP_InputField betInputField;
     public Button playButton, retireBetButton;
     public TMP_Text betText;
+    public AudioSource audioSourceRetireBet;
 
     private void Awake()
     {
         bomb = FindObjectOfType<Bomb>();
         playButton.onClick.AddListener(StartPlayingButton);
         retireBetButton.onClick.AddListener(RetireBetButton);
+        audioSourceRetireBet = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
     {
         bomb.OnRebuildBomb += RestartGame;
+        bomb.OnBombExplode += DeactivateRetireBetButton;
     }
 
     private void OnDisable()
     {
         bomb.OnRebuildBomb -= RestartGame;
+        bomb.OnBombExplode -= DeactivateRetireBetButton;
     }
 
     private void StartPlayingButton()
@@ -65,8 +69,11 @@ public class GameManager : MonoBehaviour
 
     private void RetireBetButton()
     {
+        audioSourceRetireBet.Play();
+
         multiplier = bomb.multiplier;
         OnRetireBet?.Invoke(bet, multiplier);
+
         retireBetButton.gameObject.SetActive(false);
 
         betText.gameObject.SetActive(false);
@@ -79,5 +86,10 @@ public class GameManager : MonoBehaviour
         retireBetButton.gameObject.SetActive(false);
 
         betText.gameObject.SetActive(false);
+    }
+
+    private void DeactivateRetireBetButton()
+    {
+        retireBetButton.gameObject.SetActive(false);
     }
 }
