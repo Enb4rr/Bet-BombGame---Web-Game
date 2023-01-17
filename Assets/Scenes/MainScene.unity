@@ -603,6 +603,7 @@ MonoBehaviour:
   betInputField: {fileID: 38400935}
   playButton: {fileID: 229890589}
   retireBetButton: {fileID: 754824049}
+  betText: {fileID: 1420555606}
 --- !u!1 &229890587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1420555605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2774,7 +2775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
-  BombIsOn: 0
+  bombIsOn: 0
+  counting: 0
   multiplierText: {fileID: 1756583483}
 --- !u!1 &2091208746
 GameObject:

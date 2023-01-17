@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_InputField betInputField;
     public Button playButton, retireBetButton;
+    public TMP_Text betText;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     private void StartPlayingButton()
     {
         bet = float.Parse(betInputField.text);
-
+        
         if(bet > 0)
         {
             OnStartPlaying?.Invoke(bet, multiplier);
@@ -51,10 +52,14 @@ public class GameManager : MonoBehaviour
             playButton.gameObject.SetActive(false);
             betInputField.gameObject.SetActive(false);
             retireBetButton.gameObject.SetActive(true);
+
+            betText.gameObject.SetActive(true);
+            betText.text = "Your current bet is: " + bet + "$";
         }
         else
         {
-            //Mostrar "No puedes apostar sin dinero" en un texto
+            betText.gameObject.SetActive(true);
+            betText.text = "You can not bet without money";
         }
     }
 
@@ -63,6 +68,8 @@ public class GameManager : MonoBehaviour
         multiplier = bomb.multiplier;
         OnRetireBet?.Invoke(bet, multiplier);
         retireBetButton.gameObject.SetActive(false);
+
+        betText.gameObject.SetActive(false);
     }
 
     private void RestartGame()
@@ -70,5 +77,7 @@ public class GameManager : MonoBehaviour
         playButton.gameObject.SetActive(true);
         betInputField.gameObject.SetActive(true);
         retireBetButton.gameObject.SetActive(false);
+
+        betText.gameObject.SetActive(false);
     }
 }

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Balance = 10;
-        balanceText.text = "Your current balance is: " + balance.ToString() + "$";
+        balanceText.text = "Your balance: " + balance.ToString() + "$";
     }
 
     private void OnEnable()
@@ -40,12 +40,12 @@ public class Player : MonoBehaviour
     public void StartPlaying(float bet, float multiplier)
     {
         Balance -= bet;
-        balanceText.text = "Your current balance is: " + balance.ToString() + "$";
+        balanceText.text = "Your balance: " + balance.ToString() + "$";
     }
 
     public void EndBet(float bet,float multiplier)
     {
         Balance += bet * multiplier;
-        balanceText.text = "Your current balance is: " + balance.ToString() + "$";
+        balanceText.text = "Your balance: " + balance.ToString() + "$";
     }
 }
