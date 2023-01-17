@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class Bomb : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Bomb : MonoBehaviour
     public bool bombIsOn;
     public bool counting;
     private int randomNumber;
+
+    public SpriteRenderer bombRenderer, explosionRenderer;
 
     public TMP_Text multiplierText;
 
@@ -78,7 +81,8 @@ public class Bomb : MonoBehaviour
 
         audioSource.Play();
 
-        //Mostrar sprites
+        bombRenderer.DOFade(0, 1);
+        explosionRenderer.DOFade(1, 1);
 
         OnBombExplode?.Invoke();
 
@@ -93,7 +97,8 @@ public class Bomb : MonoBehaviour
 
         multiplierText.text = "Multiplier: " + multiplier.ToString() + "X";
 
-        //Recargar sprites
+        bombRenderer.DOFade(1, 1);
+        explosionRenderer.DOFade(0, 1);
 
         OnRebuildBomb?.Invoke();
     }

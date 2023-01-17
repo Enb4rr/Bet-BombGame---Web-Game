@@ -17,13 +17,14 @@ public class GameManager : MonoBehaviour
 
     private float bet, multiplier;
     private Bomb bomb;
+    public GameObject tick;
 
     //Buttons & Stuff
 
     public TMP_InputField betInputField;
     public Button playButton, retireBetButton;
     public TMP_Text betText;
-    public AudioSource audioSourceRetireBet;
+    public AudioSource audioSourceRetireBet, audioSourceTickBomb;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         playButton.onClick.AddListener(StartPlayingButton);
         retireBetButton.onClick.AddListener(RetireBetButton);
         audioSourceRetireBet = GetComponent<AudioSource>();
+        audioSourceTickBomb = tick.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
 
             betText.gameObject.SetActive(true);
             betText.text = "Your current bet is: " + bet + "$";
+
+            audioSourceTickBomb.Play();
         }
         else
         {
@@ -91,5 +95,6 @@ public class GameManager : MonoBehaviour
     private void DeactivateRetireBetButton()
     {
         retireBetButton.gameObject.SetActive(false);
+        audioSourceTickBomb.Stop();
     }
 }
