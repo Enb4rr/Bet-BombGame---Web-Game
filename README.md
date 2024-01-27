@@ -19,5 +19,8 @@ After submitting this technical test, I had the opportunity to apply my knowledg
 ### All used assets on this project are free from copyright.
 
 -	Free Casual Game SFX Pack – Unity
+-	![alt text](http://url/to/img.png)
 -	Farrah font – Don Marciano
+-	![alt text](http://url/to/img.png)
 -	Free Copyright Music
+-	![alt text](http://url/to/img.png)
