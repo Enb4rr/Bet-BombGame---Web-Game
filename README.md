@@ -13,14 +13,14 @@ Web, Gambling, Casino.
 After submitting this technical test, I had the opportunity to apply my knowledge in the development of gambling video games intended for the GamesOnChain platform. You can see some of the games in action here:
 
 ### Bet Bomb Game
+-	![alt text](https://github.com/Enb4rr/Bet-BombGame---Web-Game/blob/main/Images/BetBomb.png)
 ### War
+-	![alt text](https://github.com/Enb4rr/Bet-BombGame---Web-Game/blob/main/Images/War.png)
 ### RPS
+-	![alt text](https://github.com/Enb4rr/Bet-BombGame---Web-Game/blob/main/Images/RPS.png)
 
 ### All used assets on this project are free from copyright.
 
 -	Free Casual Game SFX Pack – Unity
--	![alt text](http://url/to/img.png)
 -	Farrah font – Don Marciano
--	![alt text](http://url/to/img.png)
 -	Free Copyright Music
--	![alt text](http://url/to/img.png)
